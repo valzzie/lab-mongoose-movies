@@ -1,0 +1,43 @@
+<h1> Find a Celeb </h1>
+<!-- <p>Welcome to <%= title %></p> -->
+<ul>
+  <% celebsAndStuff.forEach((oneCeleb) => { %>
+    <li>
+      <h3> <%= oneCeleb.name %> </h3>
+      <!-- <p> $<%= oneCeleb.occupation %> </p>
+      <p> $<%= oneCeleb.catchPhrase %> </p> -->
+
+
+      <a href="/celebrities">
+        View Celebrities
+      </a>
+      <br>
+
+      <a href="/celebrities/<%= oneCeleb._id %>">
+        View Celebrity Details
+      </a>
+      <br>
+
+      <a href="/celebrities/new">
+        Add New Celebrity
+      </a>
+      <br>
+
+      <!-- <a href="/products/<%= oneProduct._id %>/edit">
+        Edit Product
+      </a>
+      <br>
+
+      <a href="/products/<%= oneProduct._id %>/delete">
+        Delete Link (GET)
+      </a>
+      <br> -->
+
+      <form method="post" action="/celebrities/<%= oneCeleb._id %>/delete">
+        <button> Delete a Celebrity </button>
+      </form>
+
+
+    </li>
+  <% }) %>
+</ul>

@@ -1,0 +1,13 @@
+<h1> Celebrity Details</h1>
+<!-- <p>Welcome to <%= title %></p> -->
+<ul>
+  <% celebDetails.forEach((oneCeleb) => { %>
+    <li>
+      <h3> <%= oneCeleb.name %> </h3>
+      <p> $<%= oneCeleb.occupation %> </p>
+      <p> $<%= oneCeleb.catchPhrase %> </p>
+
+
+    </li>
+  <% }) %>
+</ul>
