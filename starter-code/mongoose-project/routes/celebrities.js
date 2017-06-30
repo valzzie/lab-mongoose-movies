@@ -101,7 +101,7 @@ router.get('/celebrities/:id/edit', (req, res, next) => {
             next(err);
             return;
           }
-//what does this line do again???????????????????????
+//what does this line do again???????????????????????  celebDetails is what is passed into celebrities/edit.ejs
           res.locals.celebDetails = celebFromDb;
 
           res.render('celebrities/edit.ejs');
@@ -114,6 +114,45 @@ router.get('/celebrities/:id/edit', (req, res, next) => {
       }
     );
 });
+
+// STEP #2 of form submission for UPDATING a product
+// <form method="post" action="/products/283u8eu239eu23e/update">
+//                |                             |
+//      -----------      ------------------------
+//      |                |
+router.post('/celebrities/:id/update', (req, res, next) => {
+//    /products/283u8eu239eu23e/update
+//                     |
+//              req.params.myId
+
+    CelebrityModel.findByIdAndUpdate(
+      req.params.id,            // 1st argument -> id of document to update
+
+      {                           // 2nd argument -> object of fields to update
+        name: req.body.celebritytName,
+        occupation: req.body.celebrityOccupation,
+        catchphrase: req.body.celbritycatchPhrase
+      },
+
+      (err, celebrityFromDb) => {  // 3rd argument -> callback!
+        if (err) {
+          // use next() to skip to the ERROR PAGE
+          next(err);
+          return;
+        }
+
+        // If saved successfully, redirect to a URL.
+        // (redirect is STEP #3 of form submission for a new product)
+        res.redirect('/celebrities/' + celebFromDb._id);
+          // you can ONLY redirect to a URL 🌏
+
+          // 🚨🚨🚨
+          // If you don't redirect, you can refresh and duplicate your data!
+          // 🚨🚨🚨
+      }
+    );
+});
+
 // Delete from a FORM BUTTON (POST)
 //   (same code as GET version)
 router.post('/celebrities/:id/delete', (req, res, next) => {

@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
 ///////////routes go below here
 //whatever variable we define as the constant is what should be used in teh app.use below it
-const index = require('./routes/route-index');
+const index = require('./routes/route-index.js');
 app.use('/', index);
 
 const myCelebRoutes = require('./routes/celebrities.js');
